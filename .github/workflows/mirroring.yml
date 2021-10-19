@@ -34,7 +34,6 @@ jobs:
       - name: Set content to var
         uses: actions/github-script@v4
         id: blogcontent
-        if: steps.build.outcome != 'success'
         with:
           script: |
             const fs = require('fs');
