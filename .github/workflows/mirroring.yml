@@ -1,0 +1,51 @@
+name: Mirroring hosts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 15 */1 * *"
+
+jobs:
+  Mirroring:
+    timeout-minutes: 3
+    runs-on: ubuntu-latest
+    env:
+      BLOG_CONTENT: blogcontent.json
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Download hosts
+        run: |
+          wget --no-check-certificate --server-response https://pastebin.com/raw/XF5FP2rG -O h2ss.txt
+
+      - name: Get latest blog content
+        run: |
+          npm install
+          node ./index.js '${{ env.BLOG_CONTENT }}'
+
+      - name: Set content to var
+        uses: actions/github-script@v4
+        id: blogcontent
+        if: steps.build.outcome != 'success'
+        with:
+          script: |
+            const fs = require('fs');
+            const json = fs.readFileSync('${{ env.BLOG_CONTENT }}','utf8').toString();
+            const content = JSON.parse(json);
+            return `${content.link}\n${content.description}`;
+          result-encoding: string
+
+      - name: Push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        id: commit
+        with:
+          file_pattern: '**.txt'
+          commit_message: ${{ steps.blogcontent.outputs.result }}
