@@ -10,7 +10,8 @@ jobs:
     timeout-minutes: 3
     runs-on: ubuntu-latest
     env:
-      BLOG_CONTENT: blogcontent.json
+      HOSTS_URL: https://pastebin.com/raw/XF5FP2rG
+      BLOG_JSON_PATH: blogcontent.json
 
     steps:
       - name: Clone repository
@@ -24,12 +25,12 @@ jobs:
 
       - name: Download hosts
         run: |
-          wget --no-check-certificate --server-response https://pastebin.com/raw/XF5FP2rG -O h2ss.txt
+          wget --no-check-certificate --server-response ${{ env.HOSTS_URL }} -O h2ss.txt
 
       - name: Get latest blog content
         run: |
           npm install
-          node ./index.js '${{ env.BLOG_CONTENT }}'
+          node ./index.js '${{ env.BLOG_JSON_PATH }}'
 
       - name: Set content to var
         uses: actions/github-script@v4
@@ -37,7 +38,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const json = fs.readFileSync('${{ env.BLOG_CONTENT }}','utf8').toString();
+            const json = fs.readFileSync('${{ env.BLOG_JSON_PATH }}','utf8').toString();
             const content = JSON.parse(json);
             return `${content.link}\n${content.description}`;
           result-encoding: string

@@ -1,6 +1,5 @@
 const process = require('process');
 const parser = require('fast-xml-parser')
-const he = require('he');
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +7,7 @@ const fs = require('fs');
 function isURL(url) {
   let isUrl;
   try {
-    release_url = new URL(url);
+    const z = new URL(url);
     isUrl = true;
   } catch {
     isUrl = false;
@@ -64,8 +63,8 @@ async function getFeedXml(url) {
   );
 
 
-  const outputJson = outputPath;//path.join(__dirname, './latestblog.json');
-  await fs.writeFile(outputJson, content, 'utf8', error => {
+  const contentPath = outputPath;//path.join(__dirname, './latestblog.json');
+  await fs.writeFile(contentPath, content, 'utf8', error => {
     if (error) {
       process.exit(-3);
     }
