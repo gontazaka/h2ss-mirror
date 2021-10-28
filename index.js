@@ -1,8 +1,8 @@
 const process = require('process');
-const parser = require('fast-xml-parser')
-const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
+const RssParser = require('rss-parser')
+const axios = require('axios');
 
 function isURL(url) {
   let isUrl;
@@ -39,19 +39,14 @@ async function getFeedXml(url) {
     process.exit(-201);
   }
 
-  // xml = getRssContent('./rss.xml'); // standalone debug
+  const parser = new RssParser()
+
+  // const xml = await getFeedXml('./rss.xml'); // standalone debug
   const xml = await getFeedXml('https://note.com/hosts2ch/rss');
 
-  if ( !parser.validate(xml) ) {
-    process.exit(-1);
-  }
-  const parsed = parser.parse(xml);
+  const feed = await parser.parseString(xml)
+  const latest = feed.items[0];
 
-  const latest = parsed?.rss?.channel?.item[0];
-  if ( !latest ) {
-    process.exit(-2);
-  }
-  
   // generate output result
   const content = JSON.stringify(
     {

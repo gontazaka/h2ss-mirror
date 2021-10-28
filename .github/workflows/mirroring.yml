@@ -39,8 +39,8 @@ jobs:
           script: |
             const fs = require('fs');
             const json = fs.readFileSync('${{ env.BLOG_JSON_PATH }}','utf8').toString();
-            const content = JSON.parse(json);
-            return `${content.link}\n${content.description}`;
+            const latest = JSON.parse(json);
+            return `${latest.link}\n${latest.content}`;
           result-encoding: string
 
       - name: Push
