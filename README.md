@@ -9,4 +9,4 @@
 
 ## Files
 
-![File Size](https://img.shields.io/github/size/gontazaka/h2ss-mirror/h2ss.txt?label=Size&color=lightgray) <https://raw.githubusercontent.com/gontazaka/h2ss-mirror/master/h2ss.txt>  
+<https://raw.githubusercontent.com/gontazaka/h2ss-mirror/master/h2ss.txt>  
