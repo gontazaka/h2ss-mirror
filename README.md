@@ -5,7 +5,7 @@
 
 ## License
 
-[CC1.0](https://creativecommons.org/publicdomain/zero/1.0/). Original Licensor <https://note.com/hosts2ch/>  
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Original Licensor <https://note.com/hosts2ch/>  
 
 ## Files
 
