@@ -1,13 +1,12 @@
 # H2SS - Japanese ad blocklist
 # List of mobile advertising domains in Japan
 # Homepage: note.com/hosts2ch
-# File size: 31 KB
-# Domain count: 1074
-# =========== Last modified: 2021-11-02 ===========
+# File size: 30 KB
+# Domain count: 1076
+# =========== Last modified: 2021-11-09 ===========
 
 127.0.0.1  localhost
 ::1  localhost
-
 
 127.0.0.1 100234.advision-adnw.jp
 127.0.0.1 100291.adnico.jp
@@ -290,6 +289,7 @@
 127.0.0.1 ashot.txxx.com
 127.0.0.1 asp.m-live.jp
 127.0.0.1 aspm.jp
+127.0.0.1 asset.fwcdn2.com
 127.0.0.1 asset.torimochi-ad.net
 127.0.0.1 assets.gunosy.com
 127.0.0.1 auc.ca-conv.jp
@@ -342,6 +342,7 @@
 127.0.0.1 cc.i2i.jp
 127.0.0.1 cc2.i2i.jp
 127.0.0.1 cd.ladsp.com
+127.0.0.1 cdn-creatives-akamaistls-prd.unityads.unity3d.com
 127.0.0.1 cdn-fluct.sh.adingo.jp
 127.0.0.1 cdn-yjp.taboola.com
 127.0.0.1 cdn.ad1-click.com
